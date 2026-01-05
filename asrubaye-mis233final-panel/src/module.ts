@@ -3,38 +3,23 @@ import { SimpleOptions } from './types';
 import { SimplePanel } from './components/SimplePanel';
 
 export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
-  return builder
+  builder
     .addTextInput({
-      path: 'text',
-      name: 'Simple text option',
-      description: 'Description of panel option',
-      defaultValue: 'Default value of text input option',
+      path: 'panelTitle',
+      name: 'Panel title',
+      defaultValue: 'MIS233 Final Panel',
     })
     .addBooleanSwitch({
-      path: 'showSeriesCount',
-      name: 'Show series counter',
-      defaultValue: false,
+      path: 'showAuthor',
+      name: 'Show author',
+      defaultValue: true,
     })
-    .addRadio({
-      path: 'seriesCountSize',
-      defaultValue: 'sm',
-      name: 'Series counter size',
-      settings: {
-        options: [
-          {
-            value: 'sm',
-            label: 'Small',
-          },
-          {
-            value: 'md',
-            label: 'Medium',
-          },
-          {
-            value: 'lg',
-            label: 'Large',
-          },
-        ],
-      },
-      showIf: (config) => config.showSeriesCount,
+    .addTextInput({
+      path: 'authorText',
+      name: 'Author text',
+      defaultValue: 'Developed by Alyaa Al-Rubaye',
+      showIf: (opts) => opts.showAuthor,
     });
+
+  return builder;
 });

@@ -18,11 +18,16 @@ const getStyles = () => {
       top: 0;
       left: 0;
     `,
-    textBox: css`
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 10px;
+    content: css`
+      position: relative;
+      padding: 12px;
+    `,
+    title: css`
+      margin: 0;
+    `,
+    meta: css`
+      margin-top: 8px;
+      opacity: 0.85;
     `,
   };
 };
@@ -57,14 +62,13 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, fie
           <circle data-testid="simple-panel-circle" style={{ fill: theme.colors.primary.main }} r={100} />
         </g>
       </svg>
-	<div style={{ marginTop: '8px', opacity: 0.8 }}>
-		Developed by Alyaa Al-Rubaye
-	</div>
-      <div className={styles.textBox}>
-        {options.showSeriesCount && (
-          <div data-testid="simple-panel-series-counter">Number of series: {data.series.length}</div>
+
+      <div className={styles.content}>
+        <h3 className={styles.title}>{options.panelTitle || 'MIS233 Final Panel'}</h3>
+
+        {options.showAuthor && (
+          <div className={styles.meta}>{options.authorText || 'Developed by Alyaa Al-Rubaye'}</div>
         )}
-        <div>Text option value: {options.text}</div>
       </div>
     </div>
   );
